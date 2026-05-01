@@ -1,9 +1,24 @@
 <?php
+require_once __DIR__ . '/config.php';
+
 function h(string $str): string {
     return htmlspecialchars($str, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
+function base_path(string $path = ''): string {
+    $base = $GLOBALS['BASE_PATH_NORMALIZED'] ?? '';
+    if ($path === '' || $path === '/') {
+        return $base === '' ? '/' : $base . '/';
+    }
+    if ($path[0] !== '/') $path = '/' . $path;
+    return ($base === '' ? '' : $base) . $path;
+}
+
 function redirect(string $url): void {
+    // If $url looks like a local path (starts with '/'), prefix with base path
+    if (strpos($url, '/') === 0) {
+        $url = base_path($url);
+    }
     header('Location: ' . $url);
     exit;
 }

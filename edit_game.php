@@ -14,7 +14,7 @@ $game = $stmt->fetch();
 
 if (!$game) {
     set_flash('error', 'Game not found.');
-    redirect('/video-game-backlog-tracker/dashboard.php');
+    redirect('/dashboard.php');
 }
 
 $input = [
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         );
         $stmt->execute([$input['title'], $input['status'], $rating, $notes, $coverUrl, $gameId, $uid]);
         set_flash('success', '"' . $input['title'] . '" updated.');
-        redirect('/video-game-backlog-tracker/dashboard.php');
+        redirect('/dashboard.php');
     }
 }
 
@@ -75,13 +75,13 @@ get_flash();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Game — Game Backlog</title>
-    <link rel="stylesheet" href="/video-game-backlog-tracker/assets/css/style.css">
+    <link rel="stylesheet" href="<?= base_path('/assets/css/style.css') ?>">
 </head>
 <body>
     <nav class="nav">
-        <a href="/video-game-backlog-tracker/dashboard.php" class="nav-brand">Game Backlog</a>
+        <a href="<?= base_path('/') ?>" class="nav-brand">Game Backlog</a>
         <div class="nav-right">
-            <form method="POST" action="/video-game-backlog-tracker/logout.php" class="logout-form">
+            <form method="POST" action="<?= base_path('/logout.php') ?>" class="logout-form">
                 <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
                 <button type="submit" class="btn btn--sm">Logout</button>
             </form>
@@ -91,7 +91,7 @@ get_flash();
     <main class="main-content">
         <div class="form-page">
             <div class="form-page-header">
-                <a href="/video-game-backlog-tracker/dashboard.php" class="back-link">← Back</a>
+                <a href="<?= base_path('/dashboard.php') ?>" class="back-link">← Back</a>
                 <h1 class="page-title">Edit Game</h1>
             </div>
 
@@ -154,13 +154,14 @@ get_flash();
                 </div>
 
                 <div class="form-actions">
-                    <a href="/video-game-backlog-tracker/dashboard.php" class="btn">Cancel</a>
+                    <a href="<?= base_path('/dashboard.php') ?>" class="btn">Cancel</a>
                     <button type="submit" class="btn btn--primary">Save Changes</button>
                 </div>
             </form>
         </div>
     </main>
 
-    <script src="/video-game-backlog-tracker/assets/js/main.js"></script>
+    <script>window.BASE_PATH = '<?= rtrim($GLOBALS['BASE_PATH_NORMALIZED'] ?? '', '/') ?>';</script>
+    <script src="<?= base_path('/assets/js/main.js') ?>"></script>
 </body>
 </html>

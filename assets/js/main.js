@@ -74,7 +74,8 @@
             dropdown.style.display = 'block';
             highlighted = -1;
 
-            fetch('/video-game-backlog-tracker/search_games.php?q=' + encodeURIComponent(q))
+            var _base = (window.BASE_PATH || '');
+            fetch(_base + '/search_games.php?q=' + encodeURIComponent(q))
                 .then(function (r) { return r.json(); })
                 .then(function (data) { currentResults = data; renderDropdown(data); })
                 .catch(function () {

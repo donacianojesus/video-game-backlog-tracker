@@ -4,8 +4,8 @@ function require_login(): void {
         session_start();
     }
     if (empty($_SESSION['user_id'])) {
-        header('Location: /video-game-backlog-tracker/login.php');
-        exit;
+        require_once __DIR__ . '/functions.php';
+        redirect('/login.php');
     }
 }
 

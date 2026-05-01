@@ -40,14 +40,14 @@ $statusLabels = ['playing' => 'Currently Playing', 'want' => 'Want to Play', 'co
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Backlog — Game Backlog</title>
-    <link rel="stylesheet" href="/video-game-backlog-tracker/assets/css/style.css">
+    <link rel="stylesheet" href="<?= base_path('/assets/css/style.css') ?>">
 </head>
 <body>
     <nav class="nav">
-        <a href="/video-game-backlog-tracker/dashboard.php" class="nav-brand">Game Backlog</a>
+        <a href="<?= base_path('/') ?>" class="nav-brand">Game Backlog</a>
         <div class="nav-right">
             <span class="nav-username"><?= h($currentUser['username']) ?></span>
-            <form method="POST" action="/video-game-backlog-tracker/logout.php" class="logout-form">
+            <form method="POST" action="<?= base_path('/logout.php') ?>" class="logout-form">
                 <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
                 <button type="submit" class="btn btn--sm">Logout</button>
             </form>
@@ -71,7 +71,7 @@ $statusLabels = ['playing' => 'Currently Playing', 'want' => 'Want to Play', 'co
                     <?php endif; ?>
                 </div>
             </div>
-            <a href="/video-game-backlog-tracker/add_game.php" class="btn btn--primary">+ Add Game</a>
+            <a href="<?= base_path('/add_game.php') ?>" class="btn btn--primary">+ Add Game</a>
         </div>
 
         <div class="list-container">
@@ -92,7 +92,7 @@ $statusLabels = ['playing' => 'Currently Playing', 'want' => 'Want to Play', 'co
 
             <?php if (empty($allGames)): ?>
                 <div class="empty-state">
-                    No games yet. <a href="/video-game-backlog-tracker/add_game.php">Add your first game</a>
+                    No games yet. <a href="<?= base_path('/add_game.php') ?>">Add your first game</a>
                 </div>
             <?php else: ?>
                 <table class="game-table" id="game-table">
@@ -135,10 +135,10 @@ $statusLabels = ['playing' => 'Currently Playing', 'want' => 'Want to Play', 'co
                                     <?php endif; ?>
                                 </td>
                                 <td class="col-actions">
-                                    <a href="/video-game-backlog-tracker/edit_game.php?id=<?= (int)$game['id'] ?>"
+                                                <a href="<?= base_path('/edit_game.php?id=' . (int)$game['id']) ?>"
                                        class="action-link">Edit</a>
                                     <span class="action-sep">·</span>
-                                    <form method="POST" action="/video-game-backlog-tracker/delete_game.php"
+                                    <form method="POST" action="<?= base_path('/delete_game.php') ?>"
                                           class="delete-form" style="display:inline">
                                         <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
                                         <input type="hidden" name="id" value="<?= (int)$game['id'] ?>">
@@ -153,6 +153,7 @@ $statusLabels = ['playing' => 'Currently Playing', 'want' => 'Want to Play', 'co
         </div>
     </main>
 
-    <script src="/video-game-backlog-tracker/assets/js/main.js"></script>
+    <script>window.BASE_PATH = '<?= rtrim($GLOBALS['BASE_PATH_NORMALIZED'] ?? '', '/') ?>';</script>
+    <script src="<?= base_path('/assets/js/main.js') ?>"></script>
 </body>
 </html>

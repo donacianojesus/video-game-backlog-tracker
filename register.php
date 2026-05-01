@@ -5,7 +5,7 @@ require_once __DIR__ . '/includes/functions.php';
 if (session_status() === PHP_SESSION_NONE) session_start();
 
 if (!empty($_SESSION['user_id'])) {
-    redirect('/video-game-backlog-tracker/dashboard.php');
+    redirect('/dashboard.php');
 }
 
 $errors = [];
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         session_regenerate_id(true);
         $_SESSION['user_id'] = (int) $pdo->lastInsertId();
         set_flash('success', 'Account created! Welcome, ' . $username . '.');
-        redirect('/video-game-backlog-tracker/dashboard.php');
+        redirect('/dashboard.php');
     }
 }
 ?>
@@ -54,11 +54,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register — Game Backlog</title>
-    <link rel="stylesheet" href="/video-game-backlog-tracker/assets/css/style.css">
+    <link rel="stylesheet" href="<?= base_path('/assets/css/style.css') ?>">
 </head>
 <body>
     <nav class="nav">
-        <a href="/video-game-backlog-tracker/" class="nav-brand">Game Backlog</a>
+        <a href="<?= base_path('/') ?>" class="nav-brand">Game Backlog</a>
     </nav>
 
     <main class="auth-page">
@@ -102,11 +102,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <p class="auth-switch">
                 Already have an account?
-                <a href="/video-game-backlog-tracker/login.php">Sign in</a>
+                <a href="<?= base_path('/login.php') ?>">Sign in</a>
             </p>
         </div>
     </main>
 
-    <script src="/video-game-backlog-tracker/assets/js/main.js"></script>
+    <script>window.BASE_PATH = '<?= rtrim($GLOBALS['BASE_PATH_NORMALIZED'] ?? '', '/') ?>';</script>
+    <script src="<?= base_path('/assets/js/main.js') ?>"></script>
 </body>
 </html>

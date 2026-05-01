@@ -5,7 +5,7 @@ require_once __DIR__ . '/includes/functions.php';
 require_login();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    redirect('/video-game-backlog-tracker/dashboard.php');
+    redirect('/dashboard.php');
 }
 
 verify_csrf();
@@ -25,4 +25,4 @@ if ($game) {
     set_flash('error', 'Game not found.');
 }
 
-redirect('/video-game-backlog-tracker/dashboard.php');
+redirect('/dashboard.php');
