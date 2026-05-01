@@ -1,6 +1,6 @@
 <?php
 // Base path for the app when served from a subdirectory, e.g. '/video-game-backlog-tracker'
-// Leave empty or set via environment variable for root deployment.
+// Leave empty or set via environment variable for root deployment
 if (!defined('BASE_PATH')) {
     $env = getenv('BASE_PATH');
     if ($env === false) $env = '';

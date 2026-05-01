@@ -1,20 +1,16 @@
 # Video Game Backlog Tracker
 
-A small PHP + MySQL app for tracking games you want to play, are currently playing, or have completed.
+A web app for tracking games you want to play, are currently playing, or have completed.
 
 ## Requirements
 
 - PHP 8+ with PDO MySQL enabled
 - MySQL or MariaDB
 
-The app connects with the settings in `includes/db.php`:
-
 - Host: `localhost`
 - Database: `game_backlog`
 - User: `root`
 - Password: empty by default
-
-If your local MySQL user or password is different, update `includes/db.php`.
 
 ## Database Setup
 
@@ -143,10 +139,3 @@ Exit MySQL:
 ```sql
 exit;
 ```
-
-## Notes
-
-- `register.php` creates new users.
-- `dashboard.php` is the main list view.
-- `add_game.php` and `edit_game.php` require a logged-in user.
-- `search_games.php` is used by the live title search in the form.
