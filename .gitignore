@@ -1,1 +1,3 @@
 .claude/
+includes/igdb_credentials.php
+includes/.igdb_token.json

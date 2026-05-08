@@ -39,7 +39,7 @@ $statusLabels = ['playing' => 'Currently Playing', 'want' => 'Want to Play', 'co
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Backlog — Game Backlog</title>
+    <title>My Backlog</title>
     <link rel="stylesheet" href="<?= base_path('/assets/css/style.css') ?>">
 </head>
 <body>

@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register — Game Backlog</title>
+    <title>Register</title>
     <link rel="stylesheet" href="<?= base_path('/assets/css/style.css') ?>">
 </head>
 <body>
@@ -81,14 +81,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="text" id="username" name="username"
                            value="<?= h($_POST['username'] ?? '') ?>"
                            autocomplete="username" required>
-                    <span class="form-hint">Letters, numbers, underscores — max 50 characters</span>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password"
                            autocomplete="new-password" required>
-                    <span class="form-hint">Minimum 8 characters</span>
                 </div>
 
                 <div class="form-group">

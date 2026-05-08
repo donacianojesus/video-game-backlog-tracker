@@ -5,7 +5,7 @@ A web app for tracking games you want to play, are currently playing, or have co
 ## Requirements
 
 - PHP 8+ with PDO MySQL enabled
-- MySQL or MariaDB
+- MySQL
 
 - Host: `localhost`
 - Database: `game_backlog`
